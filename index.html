@@ -1,58 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/common.css" />
-    <link rel="preload" href="/assets/img/4k_remaster.png" as="image" />
-    <meta
-      name="og:description"
-      content="Anything your heart desires, you can have it. Tubals."
-    />
-    <meta name="og:title" content="Tubals" />
-    <meta name="og:url" content="https://tubals.tech" />
-    <meta name="og:type" content="website" />
-    <meta name="og:image" content="https://tubals.tech/lunch.jpg" />
-    <meta name="theme-color" content="#00ffff" />
-  </head>
-  <body>
-    <div id="overlay" class="overlay">
-      <div class="overlay-body">
-        <h1>We use cookies</h1>
-        <p>
-          This website uses cookies to ensure that you get the best experience
-          on our website.
-        </p>
-        <button>Accept</button>
-        <button>Decline</button>
-      </div>
-    </div>
-    <div class="scare">
-      <img
-        id="masterrace"
-        class="screamer"
-        src="4k_remaster.png"
-        width="100%"
-        height="100%"
-      />
-      <img class="uhd" src="4k_uhd.png" height="10%" />
-      <audio
-        id="masterraceaudio"
-        src="masterrace.mp3"
-        preload="auto"
-        loop
-      ></audio>
-    </div>
-    <script type="text/javascript" src="/assets/js/masterrace.js"></script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"89855745ff89790b","r":1,"version":"2024.4.1","token":"d02fa01eef8a460499e8ba4d36eddffd"}' crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Image and Audio</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        #image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <img id="image" src="4k_remaster.png" alt="Fullscreen Image">
+    <audio id="audio" autoplay>
+        <source src="masterrace.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const image = document.getElementById('image');
+        const audio = document.getElementById('audio');
+
+        function requestFullscreen() {
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+            document.documentElement.webkitRequestFullscreen();
+          } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+            document.documentElement.msRequestFullscreen();
+          }
+        }
+
+        // Request fullscreen on page load
+        requestFullscreen();
+
+        // Handle errors if fullscreen fails
+        audio.addEventListener('error', () => {
+          console.error('Error playing audio');
+        });
+
+        image.addEventListener('error', () => {
+          console.error('Error loading image');
+        });
+    </script>
 </body>
 </html>
